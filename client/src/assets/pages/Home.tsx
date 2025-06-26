@@ -10,7 +10,7 @@ function Home({ books }: { books: Book[] }) {
       <HeroSection />
 
       {/* New Releases */}
-      <NewReleases />
+      <NewReleases books={books} /> {/* <-- PASA LOS LIBROS REALES */}
 
       {/* Merchandising */}
       <MerchCarousel />
