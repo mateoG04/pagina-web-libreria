@@ -8,7 +8,7 @@ function Home() {
   const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/books')
+    fetch('https://pagina-web-libreria.onrender.com')
       .then(res => res.json())
       .then(data => setBooks(data))
       .catch(err => console.error(err));
