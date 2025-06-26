@@ -4,7 +4,6 @@ import Home from "./assets/pages/Home";
 import { BookDetail } from './components/BookDetail';
 import { BookList } from "./assets/pages/Booklist";
 import { Book } from "./assets/types/Books";
-import { mockBooks } from "./components/NewReleases"; // importa tus libros mock
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ShippingBanner } from "./components/ShippingBanner"; // <-- Importa el ShippingBanner
