@@ -1,37 +1,10 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Book } from "../types/Books";
 
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  image: string;
-  description: string;
-}
-
-export const BookList = () => {
-  const [books, setBooks] = useState<Book[]>([]);
-  const [loading, setLoading] = useState(true);
+export function BookList({ books }: { books: Book[] }) {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get('https://pagina-web-libreria.onrender.com');
-        setBooks(response.data);
-      } catch (error) {
-        console.error('Error al cargar libros:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBooks();
-  }, []);
-
-  if (loading) {
+  if (!books.length) {
     return <div className="text-center my-5">Cargando libros...</div>;
   }
 
@@ -46,7 +19,7 @@ export const BookList = () => {
               onClick={() => navigate(`/libros/${book.id}`)}
             >
               <img 
-                src={`http://localhost:5000/api/books/images/${book.image}`}
+                src={`https://pagina-web-libreria.onrender.com/api/books/images/${book.image}`}
                 className="card-img-top"
                 alt={book.title}
                 style={{ height: '300px', objectFit: 'cover' }}
@@ -62,4 +35,4 @@ export const BookList = () => {
       </div>
     </div>
   );
-};
+}

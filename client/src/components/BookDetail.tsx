@@ -9,7 +9,7 @@ interface BookDetailProps {
     books: Book[];
 }
 
-export const BookDetail = ({ books }: BookDetailProps) => {
+export function BookDetail({ books }: BookDetailProps) {
     const { id } = useParams();
     const [book, setBook] = useState<Book | null>(null);
     const [quantity, setQuantity] = useState(1);
@@ -40,7 +40,10 @@ export const BookDetail = ({ books }: BookDetailProps) => {
     if (!book) return <div className="container py-5">Libro no encontrado.</div>;
 
     // Array de imágenes para el carrusel
-    const images = [book.image, ...(book.backCover ? [book.backCover] : [])];
+    const images = [
+        `https://pagina-web-libreria.onrender.com/api/books/images/${book.image}`,
+        ...(book.backCover ? [`https://pagina-web-libreria.onrender.com/api/books/images/${book.backCover}`] : [])
+    ];
 
     return (
         <>
@@ -185,7 +188,7 @@ export const BookDetail = ({ books }: BookDetailProps) => {
                                     name: book.title,
                                     price: book.price,
                                     image: book.image,
-                                    quantity // importante: pasar la cantidad seleccionada
+                                    quantity
                                 })
                             }
                         >
@@ -232,4 +235,4 @@ export const BookDetail = ({ books }: BookDetailProps) => {
             <RelatedBooks books={books} excludeId={book.id} />
         </>
     );
-};
+}

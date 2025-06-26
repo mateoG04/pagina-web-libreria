@@ -1,19 +1,9 @@
-import { useEffect, useState } from 'react';
 import { HeroSection } from '../../components/HeroSection';
 import { NewReleases } from '../../components/NewReleases';
-import { Book } from '../types/Books'; // Solo la interfaz
+import { Book } from "../types/Books";
 import { MerchCarousel } from "../../components/MerchCarousel";
 
-function Home() {
-  const [books, setBooks] = useState<Book[]>([]);
-
-  useEffect(() => {
-    fetch('https://pagina-web-libreria.onrender.com')
-      .then(res => res.json())
-      .then(data => setBooks(data))
-      .catch(err => console.error(err));
-  }, []);
-
+function Home({ books }: { books: Book[] }) {
   return (
     <div>
       {/* Hero Section */}
@@ -24,7 +14,6 @@ function Home() {
 
       {/* Merchandising */}
       <MerchCarousel />
-
 
       {/* Otras secciones */}
       <section className="py-5">
