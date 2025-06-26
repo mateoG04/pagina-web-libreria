@@ -1,13 +1,11 @@
-// components/HeroSection.tsx
 import { Link } from 'react-router-dom';
-import libreriaImg from '../assets/images/libreria.jpg'; // Asegúrate de que la ruta sea correcta
 
 export const HeroSection = () => {
   return (
     <section 
       className="hero-section"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/public/fondo.jpg')`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/fondo.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
