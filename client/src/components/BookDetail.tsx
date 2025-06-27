@@ -185,7 +185,7 @@ export function BookDetail({ books }: BookDetailProps) {
                             }}
                             onClick={() =>
                                 addToCart({
-                                    id: book._id,
+                                    id: book._id, // usa _id de MongoDB
                                     name: book.title,
                                     price: book.price,
                                     image: book.imageFront,
