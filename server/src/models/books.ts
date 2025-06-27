@@ -1,4 +1,3 @@
-// filepath: server/src/models/books.ts
 import mongoose from 'mongoose';
 
 const bookSchema = new mongoose.Schema({
@@ -14,4 +13,4 @@ const bookSchema = new mongoose.Schema({
   isbn: String,
 });
 
-export default mongoose.model('Book', bookSchema);
+export default mongoose.model('Book', bookSchema, 'Books'); // <-- tercer parámetro: nombre exacto de la colección
