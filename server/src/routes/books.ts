@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Book from '../models/Books';
+import Book from '../models/BooksModel';
 import mongoose from 'mongoose'; // <--- agrega esto si no está
 
 const router = Router();
