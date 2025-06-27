@@ -1,3 +1,4 @@
+// filepath: server/src/models/books.ts
 import mongoose from 'mongoose';
 
 const bookSchema = new mongoose.Schema({
