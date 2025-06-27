@@ -1,19 +1,23 @@
 import { Router } from 'express';
 import Book from '../models/Books';
+import mongoose from 'mongoose'; // <--- agrega esto si no está
 
 const router = Router();
 
 // GET /api/books - Obtener todos los libros
 router.get('/', async (req, res) => {
   try {
+    // Logs para depuración
+    console.log('Base de datos:', mongoose.connection.name);
+    console.log('Colecciones:', await mongoose.connection.db.listCollections().toArray());
+
     const books = await Book.find();
-    // Mapea los campos para que coincidan con el frontend
     const mappedBooks = books.map(book => ({
       _id: book._id,
       title: book.title,
       author: book.author,
       price: book.price,
-      imageFront: book.imageFront, // Soporta ambos por compatibilidad
+      imageFront: book.imageFront,
       imageBack: book.imageBack,
       isNew: book.isNew,
       description: book.description,
