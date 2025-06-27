@@ -13,4 +13,4 @@ const bookSchema = new mongoose.Schema({
   isbn: String,
 });
 
-export default mongoose.model('Book', bookSchema, 'Books'); // <-- tercer parámetro: nombre exacto de la colección
+export default mongoose.model('Book', bookSchema, 'Books'); // Usa la colección "Books"
