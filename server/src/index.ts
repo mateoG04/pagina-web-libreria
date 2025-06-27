@@ -6,8 +6,10 @@ import mongoose from 'mongoose';
 const app = express();
 const PORT = 5000;
 
-// Conexión a MongoDB Atlas se utiliza la URL de conexión proporcionada en mongoDB Atlas
-mongoose.connect('mongodb+srv://titi04gerez:Redimidos777@cluster0.ds8ioay.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+// Usa la variable de entorno para la conexión a MongoDB Atlas
+const mongoUri = process.env.MONGODB_URI as string;
+
+mongoose.connect(mongoUri, {
   // @ts-ignore
   useNewUrlParser: true,
   useUnifiedTopology: true,
