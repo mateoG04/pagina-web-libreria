@@ -1,4 +1,5 @@
 import { Book } from '../assets/types/Books';
+import { Link } from 'react-router-dom';
 
 interface BookCardProps {
   book: Book;
@@ -18,7 +19,7 @@ export function BookCard({ book }: BookCardProps) {
         }}
       >
         <img
-          src={book.image}
+          src={`https://pagina-web-libreria.onrender.com/public/${book.imageFront}`}
           alt={book.title}
           style={{
             width: '100%',
@@ -33,9 +34,9 @@ export function BookCard({ book }: BookCardProps) {
         <p className="card-text text-muted">{book.author}</p>
         <p className="card-text">{book.description}</p>
         <div className="mt-auto fw-bold">${book.price.toFixed(2)}</div>
-        <a href={`/libros/${book.id}`} className="btn btn-primary mt-2">
+        <Link to={`/libros/${book._id}`} className="btn btn-primary mt-2">
           Ver detalles
-        </a>
+        </Link>
       </div>
     </div>
   );

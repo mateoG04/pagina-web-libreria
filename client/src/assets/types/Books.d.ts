@@ -1,12 +1,13 @@
 export interface Book {
-  id: number;
+  _id: string;
   title: string;
   author: string;
   price: number;
-  image: string; // carátula
-  backCover?: string; // contraportada (opcional)
+  imageFront: string;
+  imageBack?: string;
+  isNew?: boolean;
   description: string;
-  pages?: number; // número de páginas (opcional)
-  format?: string; // formato (opcional, por ejemplo: "Tapa blanda", "Tapa dura", "Ebook")
-  isbn?: string; // ISBN (opcional)
+  pages?: number;
+  format?: string;
+  isbn?: string;
 }

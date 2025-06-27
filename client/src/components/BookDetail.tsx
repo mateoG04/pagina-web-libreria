@@ -23,7 +23,8 @@ export function BookDetail({ books }: BookDetailProps) {
     const { addToCart } = useCart();
 
     useEffect(() => {
-        const found = books.find((b) => b.id === Number(id));
+        // Busca por _id (MongoDB)
+        const found = books.find((b) => b._id === id);
         setBook(found || null);
         setCurrentImg(0); // Siempre mostrar portada al cambiar de libro
     }, [id, books]);
@@ -39,10 +40,10 @@ export function BookDetail({ books }: BookDetailProps) {
 
     if (!book) return <div className="container py-5">Libro no encontrado.</div>;
 
-    // Array de imágenes para el carrusel
+    // Array de imágenes para el carrusel (portada y contraportada)
     const images = [
-        `https://pagina-web-libreria.onrender.com/api/books/images/${book.image}`,
-        ...(book.backCover ? [`https://pagina-web-libreria.onrender.com/api/books/images/${book.backCover}`] : [])
+        `https://pagina-web-libreria.onrender.com/public/${book.imageFront}`,
+        ...(book.imageBack ? [`https://pagina-web-libreria.onrender.com/public/${book.imageBack}`] : [])
     ];
 
     return (
@@ -83,7 +84,7 @@ export function BookDetail({ books }: BookDetailProps) {
                                 <img
                                     src={images[currentImg]}
                                     alt={
-                                        currentImg === 1 && book.backCover
+                                        currentImg === 1 && book.imageBack
                                             ? `Contraportada de ${book.title}`
                                             : book.title
                                     }
@@ -144,7 +145,7 @@ export function BookDetail({ books }: BookDetailProps) {
                                 )}
                             </div>
                             <div style={{ fontSize: 14, color: "#888" }}>
-                                {currentImg === 1 && book.backCover ? "Contraportada" : "Portada"}
+                                {currentImg === 1 && book.imageBack ? "Contraportada" : "Portada"}
                             </div>
                         </div>
                     </div>
@@ -184,10 +185,10 @@ export function BookDetail({ books }: BookDetailProps) {
                             }}
                             onClick={() =>
                                 addToCart({
-                                    id: book.id,
+                                    id: book._id,
                                     name: book.title,
                                     price: book.price,
-                                    image: book.image,
+                                    image: book.imageFront,
                                     quantity
                                 })
                             }
@@ -232,7 +233,7 @@ export function BookDetail({ books }: BookDetailProps) {
                     </div>
                 </div>
             </div>
-            <RelatedBooks books={books} excludeId={book.id} />
+            <RelatedBooks books={books} excludeId={book._id} />
         </>
     );
 }
