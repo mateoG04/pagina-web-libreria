@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
     const books = await Book.find();
     res.json(books);
   } catch (err) {
+    console.error('Error real:', err); // <-- Agrega esta línea
     res.status(500).json({ error: 'Error al obtener los libros' });
   }
 });
