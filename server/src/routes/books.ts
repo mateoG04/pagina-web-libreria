@@ -7,9 +7,23 @@ const router = Router();
 router.get('/', async (req, res) => {
   try {
     const books = await Book.find();
-    res.json(books);
+    // Mapea los campos para que coincidan con el frontend
+    const mappedBooks = books.map(book => ({
+      _id: book._id,
+      title: book.title,
+      author: book.author,
+      price: book.price,
+      imageFront: book.imageFront, // Soporta ambos por compatibilidad
+      imageBack: book.imageBack,
+      isNew: book.isNew,
+      description: book.description,
+      pages: book.pages,
+      format: book.format,
+      isbn: book.isbn,
+    }));
+    res.json(mappedBooks);
   } catch (err) {
-    console.error('Error real:', err); // <-- Agrega esta línea
+    console.error('Error real:', err);
     res.status(500).json({ error: 'Error al obtener los libros' });
   }
 });
