@@ -1,43 +1,26 @@
 import { Router } from 'express';
-import path from 'path';
-import fs from 'fs';
+import Book from '../models/books';
 
 const router = Router();
 
-// Datos de ejemplo (luego lo cambiarás por una base de datos)
-const books = [
-  {
-    id: 1,
-    title: "Cien años de soledad",
-    author: "Gabriel García Márquez",
-    price: 19.99,
-    image: 'it.jpg', // Nombre del archivo de imagen
-    description: "Una obra maestra de la literatura latinoamericana."
-  },
-  {
-    id: 2,
-    title: "1984",
-    author: "George Orwell",
-    price: 15.50,
-    image: 'spiderman.jpg',
-    description: "Clásico distópico sobre vigilancia y control."
-  }
-];
-
 // GET /api/books - Obtener todos los libros
-router.get('/', (req, res) => {
-  res.json(books);
+router.get('/', async (req, res) => {
+  try {
+    const books = await Book.find();
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener los libros' });
+  }
 });
 
-// Ruta para servir imágenes
-router.get('/images/:imageName', (req, res) => {
-  const imageName = req.params.imageName;
-  const imagePath = path.join(__dirname, '../../public/images', imageName);
-  
-  if (fs.existsSync(imagePath)) {
-    res.sendFile(imagePath);
-  } else {
-    res.status(404).send('Imagen no encontrada');
+// GET /api/books/:id - Obtener un libro por ID
+router.get('/:id', async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    if (!book) return res.status(404).json({ error: 'Libro no encontrado' });
+    res.json(book);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener el libro' });
   }
 });
 
