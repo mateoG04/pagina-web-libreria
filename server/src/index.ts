@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import mongoose from 'mongoose';
-import bookRoutes from './routes/Books';
+import bookRoutes from './routes/books';
 import paymentRoutes from './routes/payments';
 import dotenv from 'dotenv';
 
