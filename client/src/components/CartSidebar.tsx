@@ -3,6 +3,25 @@ import { useCart } from "../context/CartContext";
 export function CartSidebar({ open, onClose }: { open: boolean, onClose: () => void }) {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const handlePay = async () => {
+    const response = await fetch('https://pagina-web-libreria.onrender.com/api/payments/create_preference', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: cart.map(item => ({
+          title: item.name,
+          quantity: item.quantity,
+          unit_price: item.price
+        }))
+      })
+    });
+    const data = await response.json();
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      alert("Error al iniciar el pago");
+    }
+  };
 
   if (!open) return null;
 
@@ -41,7 +60,9 @@ export function CartSidebar({ open, onClose }: { open: boolean, onClose: () => v
             </div>
           ))}
           <div className="fw-bold fs-5 mt-4">Total: ${subtotal.toLocaleString("es-AR")}</div>
-          <button className="btn btn-primary w-100 mt-3">Realizar compra</button>
+          <button className="btn btn-primary w-100 mt-3" onClick={handlePay}>
+            Realizar compra
+          </button>
           <button className="btn btn-outline-secondary w-100 mt-2" onClick={onClose}>Ver más productos</button>
         </>
       )}
