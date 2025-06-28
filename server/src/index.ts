@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import mongoose from 'mongoose';
+import bookRoutes from './routes/Books';
 import paymentRoutes from './routes/payments';
 import dotenv from 'dotenv';
 
@@ -30,8 +31,7 @@ app.use('/api/payments', paymentRoutes);
 // Servir archivos estáticos (imágenes)
 app.use('/public', express.static(path.join(__dirname, '../public')));
 
-// Importar y usar rutas
-import bookRoutes from './routes/Books'; // Usa 'Books' con mayúscula
+// Usa la ruta de libros
 app.use('/api/books', bookRoutes);
 
 app.listen(PORT, () => {
