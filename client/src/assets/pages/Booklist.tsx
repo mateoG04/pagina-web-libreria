@@ -13,13 +13,13 @@ export function BookList({ books }: { books: Book[] }) {
       <h1 className="mb-4">Nuestros Libros</h1>
       <div className="row">
         {books.map((book) => (
-          <div key={book.id} className="col-md-4 mb-4">
+          <div key={book._id} className="col-md-4 mb-4">
             <div 
               className="card h-100 shadow-sm cursor-pointer"
-              onClick={() => navigate(`/libros/${book.id}`)}
+              onClick={() => navigate(`/libros/${book._id}`)}
             >
               <img 
-                src={`https://pagina-web-libreria.onrender.com/api/books/images/${book.image}`}
+                src={`/images/${book.imageFront}`}
                 className="card-img-top"
                 alt={book.title}
                 style={{ height: '300px', objectFit: 'cover' }}

@@ -1,43 +1,24 @@
-import { Book } from '../assets/types/Books';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { Book } from "../assets/types/Books";
+import "../BookCard.css"; // Importa tu CSS personalizado
 
 interface BookCardProps {
   book: Book;
 }
 
-export function BookCard({ book }: BookCardProps) {
-  return (
-    <div className="card h-100 shadow-sm">
-      <div
-        style={{
-          width: '100%',
-          height: '250px',
-          overflow: 'hidden',
-          borderTopLeftRadius: '8px',
-          borderTopRightRadius: '8px',
-          background: '#f8f8f8'
-        }}
-      >
-        <img
-          src={`https://pagina-web-libreria.onrender.com/public/${book.imageFront}`}
-          alt={book.title}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block'
-          }}
-        />
-      </div>
-      <div className="card-body d-flex flex-column">
-        <h5 className="card-title">{book.title}</h5>
-        <p className="card-text text-muted">{book.author}</p>
-        <p className="card-text">{book.description}</p>
-        <div className="mt-auto fw-bold">${book.price.toFixed(2)}</div>
-        <Link to={`/libros/${book._id}`} className="btn btn-primary mt-2">
-          Ver detalles
-        </Link>
-      </div>
+export const BookCard = ({ book }: BookCardProps) => (
+  <Link to={`/books/${book._id}`} className="card book-card shadow-sm text-decoration-none h-100">
+    <div className="book-card-img-wrapper">
+      <img
+        src={`/images/${book.imageFront}`}
+        className="card-img-top book-card-img"
+        alt={book.title}
+      />
     </div>
-  );
-}
+    <div className="card-body d-flex flex-column">
+      <h5 className="card-title mb-1">{book.title}</h5>
+      <p className="card-text text-muted mb-2">{book.author}</p>
+      <p className="card-text fw-bold mb-0">${book.price.toLocaleString()}</p>
+    </div>
+  </Link>
+);
