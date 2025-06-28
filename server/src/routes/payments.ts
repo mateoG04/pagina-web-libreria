@@ -9,7 +9,7 @@ mercadopago.configure({
 
 router.post('/create_preference', async (req, res) => {
   try {
-    const { items } = req.body; // [{ title, quantity, unit_price }]
+    const { items } = req.body;
     const preference = await mercadopago.preferences.create({
       items,
       back_urls: {
