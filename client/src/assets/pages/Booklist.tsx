@@ -14,12 +14,12 @@ export function BookList({ books }: { books: Book[] }) {
       <div className="row">
         {books.map((book) => (
           <div key={book._id} className="col-md-4 mb-4">
-            <div 
+            <div
               className="card h-100 shadow-sm cursor-pointer"
               onClick={() => navigate(`/libros/${book._id}`)}
             >
-              <img 
-                src={`/images/${book.imageFront}`}
+              <img
+                src={`https://pagina-web-libreria.onrender.com/public/images/${book.imageFront}`}
                 className="card-img-top"
                 alt={book.title}
                 style={{ height: '300px', objectFit: 'cover' }}
@@ -27,7 +27,9 @@ export function BookList({ books }: { books: Book[] }) {
               <div className="card-body">
                 <h5 className="card-title">{book.title}</h5>
                 <p className="card-text text-muted">{book.author}</p>
-                <p className="card-text">${book.price.toFixed(2)}</p>
+                <p className="card-text">
+                  {typeof book.price === "number" ? `$${book.price.toFixed(2)}` : "Precio no disponible"}
+                </p>
               </div>
             </div>
           </div>

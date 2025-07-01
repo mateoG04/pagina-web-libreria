@@ -157,7 +157,9 @@ export function BookDetail({ books }: BookDetailProps) {
                         <h2 className="mt-2 mb-1" style={{ fontWeight: 700 }}>{book.title}</h2>
                         <h5 className="text-muted mb-3">{book.author}</h5>
                         <div className="fs-2 fw-bold my-3" style={{ color: "#7c3aed" }}>
-                            ${book.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}
+                            {typeof book.price === "number"
+                                ? `$${book.price.toLocaleString("es-AR", { minimumFractionDigits: 2 })}`
+                                : "Precio no disponible"}
                         </div>
                         {/* Selector de cantidad */}
                         <div className="d-flex align-items-center mb-3">

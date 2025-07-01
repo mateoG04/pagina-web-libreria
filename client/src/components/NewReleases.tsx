@@ -32,7 +32,9 @@ export function NewReleases({ books }: { books: Book[] }) {
                 <div className="card-body">
                   <h5 className="card-title">{book.title}</h5>
                   <p className="card-text text-muted">{book.author}</p>
-                  <p className="card-text">${book.price.toLocaleString("es-AR")}</p>
+                  <p className="card-text">
+                    {typeof book.price === "number" ? `$${book.price.toLocaleString("es-AR")}` : "Precio no disponible"}
+                  </p>
                   <button className="btn btn-primary mt-2" onClick={e => {
                     e.stopPropagation();
                     navigate(`/libros/${book._id}`);

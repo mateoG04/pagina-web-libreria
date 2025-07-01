@@ -17,7 +17,9 @@ export const BookCard = ({ book }: BookCardProps) => (
       <h5 className="card-title">{book.title}</h5>
       <p className="card-text text-muted">{book.author}</p>
       <p className="card-text">{book.description}</p>
-      <div className="mt-auto fw-bold">${book.price.toFixed(2)}</div>
+      <div className="mt-auto fw-bold">
+        {typeof book.price === "number" ? `$${book.price.toFixed(2)}` : "Precio no disponible"}
+      </div>
       <Link to={`/libros/${book._id}`} className="btn btn-primary mt-2">
         Ver detalles
       </Link>
