@@ -10,7 +10,7 @@ export const BookCard = ({ book }: BookCardProps) => (
   <Link to={`/books/${book._id}`} className="card book-card shadow-sm text-decoration-none h-100">
     <div className="book-card-img-wrapper">
       <img
-        src={`/images/${book.imageFront}`}
+        src={`https://pagina-web-libreria.onrender.com/public/images/${book.imageFront}`}
         className="card-img-top book-card-img"
         alt={book.title}
       />
