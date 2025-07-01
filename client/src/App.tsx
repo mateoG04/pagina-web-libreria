@@ -10,6 +10,7 @@ import { ShippingBanner } from "./components/ShippingBanner"; // <-- Importa el 
 import { CartProvider } from "./context/CartContext";
 import { CartSidebar } from "./components/CartSidebar";
 import { MerchDetail } from "./components/MerchDetail"; // crea este componente
+import { BookCatalog } from "./assets/pages/bookCatalog"; // si lo mueves a assets/pages
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -33,6 +34,8 @@ function App() {
           <Route path="/libros" element={<BookList books={books} />} />
           <Route path="/libros/:id" element={<BookDetail books={books} />} />
           <Route path="/merch/:id" element={<MerchDetail />} />
+          <Route path="/libros" element={<BookCatalog books={books} />} />
+          <Route path="/libros/categoria/:categoria" element={<BookCatalog books={books} />} />
           {/* ...otras rutas */}
         </Routes>
         <Footer />

@@ -6,8 +6,9 @@ export interface Book {
   imageFront: string;
   imageBack?: string;
   isNew?: boolean;
-  description: string;
+  description?: string;
   pages?: number;
   format?: string;
   isbn?: string;
+  category?: string; // <-- agrega esta línea
 }
