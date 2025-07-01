@@ -187,10 +187,10 @@ export function BookDetail({ books }: BookDetailProps) {
                             }}
                             onClick={() =>
                                 addToCart({
-                                    id: book._id, // usa _id de MongoDB
+                                    id: book._id,
                                     name: book.title,
                                     price: book.price,
-                                    image: book.imageFront,
+                                    image: `https://pagina-web-libreria.onrender.com/public/images/${book.imageFront}`,
                                     quantity
                                 })
                             }

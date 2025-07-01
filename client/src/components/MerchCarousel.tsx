@@ -7,7 +7,7 @@ const merchProducts = [
     id: 1,
     name: "Taza Kamen Rider",
     price: 8500,
-    image: "/images/taza.jpeg",
+    image: "/images/pantuflas.png",
     cuotas: "Hasta 3 cuotas sin interés de $2.833",
   },
   {
@@ -42,7 +42,7 @@ const merchProducts = [
     id: 6,
     name: "Medias Soquetes Naruto - Akatsuki",
     price: 2500,
-    image: "/images/merch/medias-naruto.jpg",
+    image: "/images/merch/taza.jpg",
     cuotas: "Hasta 3 cuotas sin interés de $833",
   },
   // Puedes agregar más productos aquí
