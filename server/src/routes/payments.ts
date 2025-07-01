@@ -19,6 +19,7 @@ router.post('/create_preference', async (req, res) => {
     // Instancia Preference
     const preference = new Preference(client);
 
+    // Arma el objeto de preferencia
     const preferenceData: any = {
       items: items.map((item: any) => ({
         title: item.title,
@@ -34,21 +35,23 @@ router.post('/create_preference', async (req, res) => {
       auto_return: 'approved'
     };
 
+    // Log para depuración
+    console.log('PreferenceData enviado a Mercado Pago:', JSON.stringify(preferenceData, null, 2));
+
+    // @ts-ignore
     const result = await preference.create(preferenceData);
 
     console.log('Resultado preferencia:', result);
 
     res.json({ id: result.id, init_point: result.init_point });
-    
+
   } catch (error: any) {
     console.error('Error creando preferencia:', error);
-    // Agrega esto para ver el error real de Mercado Pago
     if (error.cause) {
       console.error('Detalle Mercado Pago:', error.cause);
     }
     res.status(500).json({ error: 'Error creando preferencia', detail: error.message, mp: error.cause });
   }
-}
-);
+});
 
 export default router;
