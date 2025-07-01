@@ -18,7 +18,9 @@ export const BookCard = ({ book }: BookCardProps) => (
     <div className="card-body d-flex flex-column">
       <h5 className="card-title mb-1">{book.title}</h5>
       <p className="card-text text-muted mb-2">{book.author}</p>
-      <p className="card-text fw-bold mb-0">${book.price.toLocaleString()}</p>
+      <p className="card-text fw-bold mb-0">
+        ${typeof book.price === "number" ? book.price.toLocaleString() : "Precio no disponible"}
+      </p>
     </div>
   </Link>
 );
