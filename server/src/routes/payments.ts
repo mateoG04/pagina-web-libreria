@@ -36,13 +36,19 @@ router.post('/create_preference', async (req, res) => {
 
     const result = await preference.create(preferenceData);
 
-    // Enviamos el id de preferencia y el init_point al frontend
-    res.json({ id: result.id, init_point: result.init_point });
+    console.log('Resultado preferencia:', result);
 
+    res.json({ id: result.id, init_point: result.init_point });
+    
   } catch (error: any) {
     console.error('Error creando preferencia:', error);
-    res.status(500).json({ error: 'Error creando preferencia', detail: error.message });
+    // Agrega esto para ver el error real de Mercado Pago
+    if (error.cause) {
+      console.error('Detalle Mercado Pago:', error.cause);
+    }
+    res.status(500).json({ error: 'Error creando preferencia', detail: error.message, mp: error.cause });
   }
-});
+}
+);
 
 export default router;
