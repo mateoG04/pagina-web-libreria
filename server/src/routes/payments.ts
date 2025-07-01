@@ -1,27 +1,47 @@
 import express from 'express';
-const mercadopago = require('mercadopago');
+import MercadoPagoConfig, { Preference } from 'mercadopago';
 
 const router = express.Router();
 
-mercadopago.configure({
-  access_token: process.env.MP_ACCESS_TOKEN || 'TU_ACCESS_TOKEN_AQUI'
+// Instancia Mercado Pago con tu access token
+const client = new MercadoPagoConfig({
+  accessToken: process.env.MP_ACCESS_TOKEN || 'TEST-6237133715142776-061312-dffdef3b6d65ac9dd2f9d8345e1179fc-462679367'
 });
 
 router.post('/create_preference', async (req, res) => {
   try {
     const { items } = req.body;
-    const preference = await mercadopago.preferences.create({
-      items,
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: 'Items inválidos o vacíos' });
+    }
+
+    // Instancia Preference
+    const preference = new Preference(client);
+
+    const preferenceData: any = {
+      items: items.map((item: any) => ({
+        title: item.title,
+        quantity: item.quantity,
+        unit_price: item.unit_price,
+        currency_id: "ARS"
+      })),
       back_urls: {
-        success: 'https://TU_DOMINIO/success',
-        failure: 'https://TU_DOMINIO/failure',
-        pending: 'https://TU_DOMINIO/pending'
+        success: 'https://pagina-web-libreria-ogf9.vercel.app/libros/success',
+        failure: 'https://pagina-web-libreria-ogf9.vercel.app/libros/failure',
+        pending: 'https://pagina-web-libreria-ogf9.vercel.app/libros/pending',
       },
       auto_return: 'approved'
-    });
-    res.json({ id: preference.body.id, init_point: preference.body.init_point });
-  } catch (error) {
-    res.status(500).json({ error: 'Error creando preferencia' });
+    };
+
+    const result = await preference.create(preferenceData);
+
+    // Enviamos el id de preferencia y el init_point al frontend
+    res.json({ id: result.id, init_point: result.init_point });
+
+  } catch (error: any) {
+    console.error('Error creando preferencia:', error);
+    res.status(500).json({ error: 'Error creando preferencia', detail: error.message });
   }
 });
 
