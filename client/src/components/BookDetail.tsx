@@ -42,8 +42,8 @@ export function BookDetail({ books }: BookDetailProps) {
 
     // Array de imágenes para el carrusel (portada y contraportada)
     const images = [
-        `https://pagina-web-libreria.onrender.com/public/${book.imageFront}`,
-        ...(book.imageBack ? [`https://pagina-web-libreria.onrender.com/public/${book.imageBack}`] : [])
+        `https://pagina-web-libreria.onrender.com/public/images/${book.imageFront}`,
+        ...(book.imageBack ? [`https://pagina-web-libreria.onrender.com/public/images/${book.imageBack}`] : [])
     ];
 
     return (

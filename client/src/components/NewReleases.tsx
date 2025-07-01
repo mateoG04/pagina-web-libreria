@@ -24,7 +24,7 @@ export function NewReleases({ books }: { books: Book[] }) {
                 style={{ cursor: "pointer" }}
               >
                 <img
-                  src={`https://pagina-web-libreria.onrender.com/public/${book.imageFront}`}
+                  src={`https://pagina-web-libreria.onrender.com/public/images/${book.imageFront}`}
                   className="card-img-top"
                   alt={book.title}
                   style={{ height: '300px', objectFit: 'cover' }}

@@ -8,7 +8,7 @@ interface BookCardProps {
 export const BookCard = ({ book }: BookCardProps) => (
   <div className="card h-100 shadow-sm">
     <img
-      src={`/images/${book.imageFront}`}
+      src={`https://pagina-web-libreria.onrender.com/public/images/${book.imageFront}`}
       className="card-img-top"
       alt={book.title}
       style={{ objectFit: 'cover', height: '250px' }}
