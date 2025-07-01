@@ -39,7 +39,7 @@ router.post('/create_preference', async (req, res) => {
     console.log('PreferenceData enviado a Mercado Pago:', JSON.stringify(preferenceData, null, 2));
 
     // @ts-ignore
-    const result = await preference.create(preferenceData);
+    const result = await preference.create({ body: preferenceData });
 
     console.log('Resultado preferencia:', result);
 
