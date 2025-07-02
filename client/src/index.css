@@ -41,6 +41,12 @@ body {
   justify-content: center;
 }
 
+/* Mostrar dropdown al pasar el mouse */
+.navbar-nav .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero-title {

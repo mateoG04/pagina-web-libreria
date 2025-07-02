@@ -11,6 +11,7 @@ import { CartProvider } from "./context/CartContext";
 import { CartSidebar } from "./components/CartSidebar";
 import { MerchDetail } from "./components/MerchDetail"; // crea este componente
 import { BookCatalog } from "./assets/pages/bookCatalog"; // si lo mueves a assets/pages
+import { Manga } from "./assets/pages/Manga";
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -36,6 +37,7 @@ function App() {
           <Route path="/merch/:id" element={<MerchDetail />} />
           <Route path="/libros" element={<BookCatalog books={books} />} />
           <Route path="/libros/categoria/:categoria" element={<BookCatalog books={books} />} />
+          <Route path="/libros/europeos" element={<Manga books={books} />} />
           {/* ...otras rutas */}
         </Routes>
         <Footer />
