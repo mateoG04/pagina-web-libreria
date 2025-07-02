@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+
 // Ejemplo de productos de merchandising
 const merchProducts = [
   {

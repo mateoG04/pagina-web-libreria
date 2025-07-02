@@ -11,4 +11,5 @@ export interface Book {
   format?: string;
   isbn?: string;
   category?: string; // <-- agrega esta línea
+  descount?: number; // <-- agrega esta línea
 }
