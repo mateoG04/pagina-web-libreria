@@ -12,17 +12,24 @@ import { CartSidebar } from "./components/CartSidebar";
 import { MerchDetail } from "./components/MerchDetail"; // crea este componente
 import { BookCatalog } from "./assets/pages/bookCatalog"; // si lo mueves a assets/pages
 import { Manga } from "./assets/pages/Manga";
+import { Loader } from "./components/Loader";
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('https://pagina-web-libreria.onrender.com/api/books')
       .then(res => res.json())
       .then(data => setBooks(data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <CartProvider>
