@@ -11,6 +11,7 @@ const bookSchema = new mongoose.Schema({
   pages: Number,
   format: String,
   isbn: String,
+  category: String,
 });
 
 export default mongoose.model('Book', bookSchema, 'Books'); // Usa la colección "Books"
